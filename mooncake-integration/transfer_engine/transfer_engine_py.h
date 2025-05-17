@@ -60,7 +60,7 @@ class TransferEnginePy {
     uintptr_t allocateManagedBuffer(size_t length);
 
     int freeManagedBuffer(uintptr_t user_tensor, size_t length);
-
+    //todo 异步写方法
     int transferSyncWrite(const char *target_hostname, uintptr_t buffer,
                           uintptr_t peer_buffer_address, size_t length);
 

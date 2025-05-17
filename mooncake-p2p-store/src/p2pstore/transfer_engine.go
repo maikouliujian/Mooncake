@@ -126,7 +126,7 @@ type TransferRequest struct {
 	TargetOffset uint64
 	Length       uint64
 }
-
+// todo submitTransfer ！！！！！！
 func (engine *TransferEngine) submitTransfer(batchID BatchID, requests []TransferRequest) error {
 	requestSlice := make([]C.transfer_request_t, len(requests))
 	for i, req := range requests {
@@ -138,7 +138,7 @@ func (engine *TransferEngine) submitTransfer(batchID BatchID, requests []Transfe
 			length:        C.uint64_t(req.Length),
 		}
 	}
-
+    //TODO
 	ret := C.submitTransfer(engine.engine, C.batch_id_t(batchID), &requestSlice[0], C.size_t(len(requests)))
 	if ret != 0 {
 		return ErrTransferEngine

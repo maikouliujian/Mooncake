@@ -46,7 +46,7 @@ using SegmentHandle = Transport::SegmentHandle;
 using SegmentID = Transport::SegmentID;
 using BatchID = Transport::BatchID;
 using BufferEntry = Transport::BufferEntry;
-
+//todo 传输kvcache数据的engine
 class TransferEngine {
    public:
     TransferEngine(bool auto_discover = false)
@@ -121,6 +121,7 @@ class TransferEngine {
 
     Status submitTransfer(BatchID batch_id,
                           const std::vector<TransferRequest> &entries) {
+        //todo submitTransfer
         return multi_transports_->submitTransfer(batch_id, entries);
     }
 

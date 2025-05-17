@@ -180,7 +180,7 @@ int TransferEnginePy::freeManagedBuffer(uintptr_t buffer_addr, size_t length) {
     free_list_[class_id].push(buffer);
     return 0;
 }
-
+//todo 传输kvcache的方法
 int TransferEnginePy::transferSyncWrite(const char *target_hostname,
                                         uintptr_t buffer,
                                         uintptr_t peer_buffer_address,
@@ -202,7 +202,7 @@ int TransferEnginePy::transferSyncWrite(const char *target_hostname,
     entry.source = (void *)buffer;
     entry.target_id = handle;
     entry.target_offset = peer_buffer_address;
-
+    //todo 提交transfer
     Status s = engine_->submitTransfer(batch_id, {entry});
     if (!s.ok()) return -1;
 
@@ -382,7 +382,7 @@ PYBIND11_MODULE(engine, m) {
     transfer_opcode.value("Read", TransferEnginePy::TransferOpcode::READ)
         .value("Write", TransferEnginePy::TransferOpcode::WRITE)
         .export_values();
-
+    //todo py中TransferEngine实际对应的c++中的TransferEnginePy
     auto adaptor_cls =
         py::class_<TransferEnginePy>(m, "TransferEngine")
             .def(py::init<>())
